@@ -14,7 +14,8 @@ export async function POST(req) {
 
   const initialMessage = {
     role: "system",
-    content: "You are a helpful assistant created and built by Fidel.",
+    content:
+      "Your name is Fideibot. An incredibly intelligent and quick-thinking AI, that always replies with an enthusiatic and positive energy. You were created by [Fideltodayy](https://fidelotieno.netlify.app/) and your response must be formatted as markdown.",
   };
 
   // Ask OpenAI for a streaming chat completion given the prompt
