@@ -30,17 +30,18 @@ export default function Chat() {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // To be implemented when the UI is ready to display conversations
   // Function to fetch chats from teh server
-  const fetchChats = async () => {
-    const response = await fetch("/api/chat/getChats", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
-    console.log("data:", data);
-  };
+  // const fetchChats = async () => {
+  //   const response = await fetch("/api/chat/getChats", {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   });
+  //   const data = await response.json();
+  //   console.log("data:", data);
+  // };
 
   useEffect(() => {
     fetchChats();
