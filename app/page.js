@@ -2,6 +2,7 @@
 
 import { useChat } from "ai/react";
 import { useEffect } from "react";
+import { useRef } from "react";
 
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
@@ -24,6 +25,11 @@ export default function Chat() {
     mongoSubmit();
   };
 
+  const bottomRef = useRef();
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   // Function to fetch chats from teh server
   const fetchChats = async () => {
     const response = await fetch("/api/chat/getChats", {
@@ -41,22 +47,75 @@ export default function Chat() {
   }, []);
   // console.log(messages);
   return (
-    <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
-      {messages.map((m) => (
-        <div key={m.id} className="whitespace-pre-wrap">
-          {m.role === "user" ? "User: " : "Fidel: "}
-          {m.content}
-        </div>
-      ))}
+    <div className="flex flex-col h-screen bg-gray-800 text-white">
+      {/* Navbar */}
+      <div className="flex items-center justify-between p-4 border-b border-gray-600">
+        <h1
+          className="text-2xl text-blue-200"
+          style={{ fontFamily: "Dancing Script" }}
+        >
+          fidibot
+        </h1>
+        {/* Additional navbar content can go here */}
+      </div>
 
-      <form onSubmit={sendChats}>
-        <input
-          className="fixed bottom-0 w-full max-w-md p-2 mb-8 border border-gray-300 rounded shadow-xl"
-          value={input}
-          placeholder="Say something..."
-          onChange={handleInputChange}
-        />
-      </form>
+      {/* Main content */}
+      <div className="flex flex-grow">
+        {/* Sidebar for recent conversations */}
+        <div className=" hidden md:block w-64 border-r border-gray-600 p-4">
+          <h2 className="text-lg font-semibold mb-4">Recent Conversations</h2>
+          {/* Prototype data for visualization */}
+          <ul>
+            <li className="mb-2">Chat 1</li>
+            <li className="mb-2">Chat 2</li>
+            {/* ... more chats */}
+          </ul>
+        </div>
+
+        {/* Chat interface */}
+        <div className="flex flex-col flex-grow p-4">
+          <div className="flex-grow overflow-auto">
+            {/* {chats.map((c) => (
+        <div key={c.id} className="whitespace-pre-wrap">
+          {c.messages.map((m) => (
+            <div key={m.id} className="whitespace-pre-wrap">
+              {m.role === "user" ? "User: " : "Fidel: "}
+              {m.content}
+              <div ref={bottomRef}></div>
+            </div>
+          ))}
+          <div ref={bottomRef}></div>
+        </div>
+      ))} */}
+            {messages.map((m) => (
+              <div
+                key={m.id}
+                className={`whitespace-pre-wrap ${
+                  m.role === "user" ? "text-right" : ""
+                }`}
+              >
+                <span
+                  className={`inline-block p-2 my-1 rounded ${
+                    m.role === "user" ? "bg-blue-500" : "bg-green-500"
+                  }`}
+                >
+                  {m.content}
+                </span>
+              </div>
+            ))}
+            <div ref={bottomRef}></div>
+          </div>
+
+          <form onSubmit={sendChats} className="mt-4">
+            <input
+              className="w-full p-2 border border-gray-300 rounded shadow-md bg-gray-700 text-white"
+              value={input}
+              placeholder="Say something..."
+              onChange={handleInputChange}
+            />
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
