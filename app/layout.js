@@ -7,6 +7,7 @@ export const metadata = {
   title: "Fidibot | CHatGPT clone",
   description:
     "Fidibot will help you with your tasks and  answer most if not all of your queries. You can use fidibot as a chatGPT alternative.",
+  image: "openai.svg",
 };
 
 export default function RootLayout({ children }) {
