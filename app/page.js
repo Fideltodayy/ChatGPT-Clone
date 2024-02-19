@@ -52,7 +52,7 @@ export default function Chat() {
     <div className="flex flex-col h-screen bg-gray-800 text-white">
       {/* Navbar */}
       <div className="flex items-center justify-between p-4 border-b border-gray-600">
-        <h1 className="text-2xl text-blue-200 title">fidibot</h1>
+        <h1 className="text-2xl font-semibold text-blue-200 title">fidibot</h1>
         {/* Additional navbar content can go here */}
       </div>
 
@@ -103,19 +103,21 @@ export default function Chat() {
             <div ref={bottomRef}></div>
           </div>
 
-          <form onSubmit={sendChats} className="mt-4 flex">
-            <input
-              className="w-full p-2 border border-gray-300 rounded shadow-md bg-gray-700 text-white"
-              value={input}
-              placeholder="Say something..."
-              onChange={handleInputChange}
-            />
-            <button
-              type="submit"
-              className="bg-blue-500 p-2 rounded text-white"
-            >
-              <IoSend />
-            </button>
+          <form onSubmit={sendChats} className="mt-4 ">
+            <div className="w-full p-2 border border-gray-300 rounded shadow-md bg-gray-700 text-white flex">
+              <input
+                className="w-full p-2 bg-gray-700 text-white focus:outline-none"
+                value={input}
+                placeholder="Say something..."
+                onChange={handleInputChange}
+              />
+              <button
+                type="submit"
+                className="bg-blue-500 p-2 rounded text-white"
+              >
+                <IoSend />
+              </button>
+            </div>
           </form>
         </div>
       </div>
