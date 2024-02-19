@@ -17,7 +17,7 @@ export default function Chat() {
       body: JSON.stringify({ email: "fidel@gmail.com", messages }),
     });
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
   };
 
   const sendChats = async (e) => {
@@ -49,7 +49,7 @@ export default function Chat() {
   // }, []);
   // console.log(messages);
   return (
-    <div className="flex flex-col h-screen bg-gray-800 text-white">
+    <div className="flex flex-col min-h-screen bg-gray-900 text-white">
       {/* Navbar */}
       <div className="flex items-center justify-between p-4 border-b border-gray-600">
         <h1 className="text-2xl font-semibold text-blue-200 title">fidibot</h1>
@@ -92,9 +92,10 @@ export default function Chat() {
                 }`}
               >
                 <span
-                  className={`inline-block p-2 my-1 rounded ${
-                    m.role === "user" ? "bg-blue-500" : "bg-green-500"
-                  }`}
+                  className="inline-block p-2 my-1 rounded bg-gray-800 shadow-slate-500 shadow-inner"
+                  // className={`inline-block p-2 my-1 rounded ${
+                  //   m.role === "user" ? "bg-blue-400" : "bg-blue-400"
+                  // }`}
                 >
                   {m.content}
                 </span>
@@ -113,7 +114,7 @@ export default function Chat() {
               />
               <button
                 type="submit"
-                className="bg-blue-500 p-2 rounded text-white"
+                className="bg-gray-900 p-2 rounded text-white"
               >
                 <IoSend />
               </button>
