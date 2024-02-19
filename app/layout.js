@@ -13,6 +13,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <meta property="og:title" content={metadata.title} />
+        <meta property="og:description" content={metadata.description} />
+        <meta property="og:image" content={metadata.image} />
+        <link rel="icon" href={metadata.image} type="image/png" />
+        {/* Add other head elements like stylesheets or scripts here */}
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   );
